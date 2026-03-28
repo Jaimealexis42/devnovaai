@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DevNova AI — Tecnología que transforma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A1628;--bg2:#0F1E38;--bg3:#152340;
+  --ink:#E8EDF5;--ink2:#A0AABF;--muted:#5A6478;
+  --accent:#00C896;--accent2:#3B82F6;--accent3:#F59E0B;
+  --border:rgba(255,255,255,0.08);
+  --shadow:0 4px 24px rgba(0,0,0,0.3);--shadow-lg:0 12px 48px rgba(0,0,0,0.4);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+
+
+
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;height:68px;background:rgba(10,22,40,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
+.nav-logo-dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px rgba(0,200,150,0.6)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.85rem;font-weight:500;color:var(--ink2);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#0A1628;padding:0.55rem 1.4rem;border-radius:8px;font-size:0.82rem;font-weight:700;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,200,150,0.3)}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,200,150,0.5)}
+@media(max-width:640px){.nav-links{display:none}}
+
+
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 6vw 80px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,200,150,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,150,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.09),transparent 70%);top:-100px;right:-100px;pointer-events:none}
+.hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,150,0.07),transparent 70%);bottom:-50px;left:-50px;pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.3);border-radius:100px;padding:0.35rem 1rem;font-size:0.75rem;font-weight:700;color:var(--accent);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1.5rem;width:fit-content;animation:fadeUp 0.7s ease both}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:blink 2s infinite}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.8rem,6vw,5.5rem);line-height:1.05;letter-spacing:-0.03em;max-width:720px;animation:fadeUp 0.7s 0.1s ease both;color:#fff}
+.grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{margin-top:1.5rem;font-size:1.1rem;font-weight:400;color:var(--ink2);max-width:520px;line-height:1.75;animation:fadeUp 0.7s 0.2s ease both}
+.hero-actions{margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.3s ease both}
+.btn-p{background:var(--accent);color:#0A1628;padding:0.9rem 2rem;border-radius:10px;font-size:0.9rem;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(0,200,150,0.3);transition:all 0.2s;display:inline-block;border:none;cursor:pointer}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,200,150,0.5)}
+.btn-g{background:transparent;color:var(--ink);padding:0.9rem 2rem;border-radius:10px;font-size:0.9rem;font-weight:600;text-decoration:none;border:1.5px solid var(--border);transition:all 0.2s;display:inline-block}
+.btn-g:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{margin-top:4rem;display:flex;gap:2.5rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.4s ease both}
+.sn{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;color:#fff}
+.sn span{color:var(--accent)}
+.sl{font-size:0.78rem;color:var(--muted);margin-top:0.1rem}
+
+.ticker-wrap{background:rgba(0,200,150,0.07);border-top:1px solid rgba(0,200,150,0.12);border-bottom:1px solid rgba(0,200,150,0.12);padding:0.75rem 0;overflow:hidden}
+.ticker-track{display:flex;width:max-content;animation:ticker 38s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ti{display:flex;align-items:center;gap:1.5rem;padding:0 2rem;white-space:nowrap;font-size:0.78rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase}
+.td{width:4px;height:4px;border-radius:50%;background:rgba(0,200,150,0.35)}
+
+.section{padding:100px 6vw;position:relative;z-index:1}
+.chip{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.2);border-radius:100px;padding:0.3rem 0.9rem;font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem}
+.stitle{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-0.025em;line-height:1.1;max-width:560px;color:#fff}
+.ssub{margin-top:1rem;font-size:0.95rem;color:var(--ink2);max-width:480px;line-height:1.75}
+
+.meaning-s{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 6vw;position:relative;z-index:1}
+.mwrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+@media(max-width:768px){.mwrap{grid-template-columns:1fr;gap:3rem}}
+.mtitle{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:-0.025em;line-height:1.1;margin-bottom:1rem;color:#fff}
+.msub{font-size:0.95rem;color:var(--ink2);line-height:1.8;margin-bottom:1.5rem}
+.mwords{display:flex;flex-direction:column;gap:1rem}
+.mword{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;border-radius:14px;border:1px solid var(--border);background:var(--bg3);transition:all 0.25s}
+.mword:hover{border-color:var(--accent);transform:translateX(6px)}
+.mlet{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;width:52px;height:52px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff}
+.ml1{background:linear-gradient(135deg,var(--accent2),#60A5FA)}
+.ml2{background:linear-gradient(135deg,var(--accent),#00A87E)}
+.ml3{background:linear-gradient(135deg,var(--accent3),#F97316)}
+.mcon h4{font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.2rem}
+.mcon p{font-size:0.82rem;color:var(--ink2)}
+.mlogo{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,6rem);letter-spacing:-0.03em;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center}
+.mlogosub{text-align:center;font-size:0.85rem;color:var(--muted);margin-top:0.75rem;font-weight:500;letter-spacing:0.04em}
+
+.sgrid{margin-top:3.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.scard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all 0.25s;position:relative;overflow:hidden}
+.scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.scard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(0,200,150,0.3)}
+.scard:hover::after{transform:scaleX(1)}
+.sico{width:52px;height:52px;border-radius:14px;background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem}
+.scard h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;color:#fff}
+.scard p{font-size:0.85rem;color:var(--ink2);line-height:1.7}
+.snum{position:absolute;top:1.5rem;right:1.5rem;font-size:0.65rem;font-weight:700;color:var(--border);letter-spacing:0.1em}
+
+.ps{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1}
+.psteps{margin-top:3.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2.5rem}
+.pnum{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;color:#fff;margin-bottom:1rem;box-shadow:0 4px 12px rgba(0,200,150,0.3)}
+.pstep h4{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;color:#fff}
+.pstep p{font-size:0.83rem;color:var(--ink2);line-height:1.7}
+
+.pgrid{margin-top:3.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.pcard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.25s}
+.pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(0,200,150,0.3)}
+.pthumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.t1{background:linear-gradient(135deg,#0F2040,#1A3060)}
+.t2{background:linear-gradient(135deg,#0A2018,#0D3020)}
+.t3{background:linear-gradient(135deg,#200A1A,#350F25)}
+.pbody{padding:1.5rem}
+.ptag{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.2);border-radius:100px;padding:0.2rem 0.7rem;display:inline-block;margin-bottom:0.75rem}
+.pbody h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.4rem;color:#fff}
+.pbody p{font-size:0.83rem;color:var(--ink2);line-height:1.65}
+
+.exs{padding:100px 6vw;background:var(--bg);position:relative;z-index:1}
+.exs.alt{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.exgrid{margin-top:3rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.excard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all 0.25s}
+.exs.alt .excard{background:var(--bg3)}
+.excard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(0,200,150,0.3)}
+.exicon{font-size:2.2rem;margin-bottom:1rem;display:block}
+.excard h4{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:0.4rem;color:#fff}
+.excard p{font-size:0.8rem;color:var(--ink2);line-height:1.65}
+.extag{display:inline-block;margin-top:0.75rem;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.2rem 0.65rem;border-radius:100px}
+.tb{background:rgba(59,130,246,0.15);color:#60A5FA}
+.tg{background:rgba(0,200,150,0.12);color:var(--accent)}
+.tr{background:rgba(239,68,68,0.12);color:#F87171}
+.ty{background:rgba(245,158,11,0.12);color:var(--accent3)}
+
+.cs{padding:100px 6vw;border-top:1px solid var(--border);position:relative;z-index:1}
+.cwrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+@media(max-width:900px){.cwrap{grid-template-columns:1fr;gap:3rem}}
+.citems{margin-top:2rem;display:flex;flex-direction:column;gap:0.75rem}
+.ci{display:flex;align-items:center;gap:1rem;padding:0.9rem 1.25rem;border:1px solid var(--border);border-radius:10px;background:var(--bg2);font-size:0.85rem;color:var(--ink2);transition:border-color 0.2s}
+.ci:hover{border-color:var(--accent)}
+.cico{font-size:1.2rem}
+.cform{display:flex;flex-direction:column;gap:1rem}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:500px){.fr{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:0.35rem}
+.fg label{font-size:0.72rem;font-weight:700;color:var(--ink2);letter-spacing:0.04em}
+.fg input,.fg select,.fg textarea{background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:0.8rem 1rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.88rem;color:var(--ink);outline:none;resize:vertical;transition:border-color 0.2s,box-shadow 0.2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,200,150,0.1)}
+.fg select option{background:var(--bg2);color:var(--ink)}
+
+footer{border-top:1px solid var(--border);padding:2rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:0.4rem}
+.fdot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+footer p{font-size:0.75rem;color:var(--muted)}
+
+.cbtn{position:fixed;bottom:2rem;right:2rem;z-index:950;width:64px;height:64px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 24px rgba(0,200,150,0.4);display:flex;align-items:center;justify-content:center;transition:all 0.3s;font-size:1.6rem}
+.cbtn:hover{transform:scale(1.08)}
+.cbubble{position:fixed;bottom:6.5rem;right:2rem;z-index:950;background:var(--bg2);border:1px solid var(--border);border-radius:16px;width:340px;max-height:480px;box-shadow:0 16px 48px rgba(0,0,0,0.4);display:flex;flex-direction:column;transform:scale(0.9) translateY(20px);opacity:0;pointer-events:none;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+.cbubble.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.cheader{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.75rem}
+.cavatar{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.cinfo h4{font-size:0.9rem;font-weight:700;color:var(--ink)}
+.cinfo p{font-size:0.72rem;color:var(--accent)}
+.cclose{margin-left:auto;background:none;border:none;cursor:pointer;color:var(--muted);font-size:1.2rem;line-height:1}
+.cmsgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;max-height:280px}
+.msg{display:flex;gap:0.5rem;align-items:flex-end}
+.msg.bot{flex-direction:row}.msg.user{flex-direction:row-reverse}
+.mavatar{width:28px;height:28px;border-radius:8px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:0.85rem}
+.mbubble{max-width:220px;padding:0.65rem 0.9rem;border-radius:12px;font-size:0.82rem;line-height:1.55}
+.msg.bot .mbubble{background:var(--bg3);color:var(--ink);border-bottom-left-radius:4px}
+.msg.user .mbubble{background:var(--accent);color:#0A1628;border-bottom-right-radius:4px}
+.mtyping .mbubble{display:flex;gap:4px;align-items:center;padding:0.75rem 1rem}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:tb 1s infinite}
+.tdot:nth-child(2){animation-delay:0.15s}.tdot:nth-child(3){animation-delay:0.3s}
+.cinput-area{padding:0.75rem;border-top:1px solid var(--border);display:flex;gap:0.5rem}
+.cinput{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:0.6rem 0.9rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.83rem;outline:none;color:var(--ink);background:var(--bg3);transition:border-color 0.2s}
+.cinput:focus{border-color:var(--accent)}
+.csend{background:var(--accent);border:none;border-radius:8px;width:36px;height:36px;cursor:pointer;color:#0A1628;font-size:1rem}
+.csend:hover{opacity:0.85}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes tb{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+
+
+<nav>
+  <a href="#" class="nav-logo"><div class="nav-logo-dot"></div>DevNova AI</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Cotizar proyecto</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div><div class="hero-glow"></div><div class="hero-glow2"></div>
+  <div class="hero-badge"><span class="hero-dot"></span>Disponible para nuevos proyectos</div>
+  <h1>Convertimos tus<br/><span class="grad">ideas en apps</span><br/>que funcionan</h1>
+  <p class="hero-sub">Apps móviles, páginas web, juegos, videos con IA y software a medida. Del concepto al producto publicado.</p>
+  <div class="hero-actions">
+    <a href="#contacto" class="btn-p">Iniciar proyecto →</a>
+    <a href="#servicios" class="btn-g">Ver servicios</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="sn">10<span>+</span></div><div class="sl">Proyectos entregados</div></div>
+    <div><div class="sn">3</div><div class="sl">Apps en Play Store</div></div>
+    <div><div class="sn">AI</div><div class="sl">Integración nativa</div></div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ti">Mobile Apps <span class="td"></span></div><div class="ti">Web Development <span class="td"></span></div>
+    <div class="ti">AI Integration <span class="td"></span></div><div class="ti">Game Development <span class="td"></span></div>
+    <div class="ti">AI Videos <span class="td"></span></div><div class="ti">Custom Software <span class="td"></span></div>
+    <div class="ti">React Native <span class="td"></span></div><div class="ti">Supabase <span class="td"></span></div>
+    <div class="ti">Claude API <span class="td"></span></div><div class="ti">Google Play <span class="td"></span></div>
+    <div class="ti">Mobile Apps <span class="td"></span></div><div class="ti">Web Development <span class="td"></span></div>
+    <div class="ti">AI Integration <span class="td"></span></div><div class="ti">Game Development <span class="td"></span></div>
+    <div class="ti">AI Videos <span class="td"></span></div><div class="ti">Custom Software <span class="td"></span></div>
+    <div class="ti">React Native <span class="td"></span></div><div class="ti">Supabase <span class="td"></span></div>
+    <div class="ti">Claude API <span class="td"></span></div><div class="ti">Google Play <span class="td"></span></div>
+  </div>
+</div>
+
+<section class="meaning-s">
+  <div class="mwrap">
+    <div class="reveal">
+      <div class="chip">✦ Quiénes somos</div>
+      <h2 class="mtitle">¿Qué significa DevNova AI?</h2>
+      <p class="msub">Nuestro nombre refleja nuestra esencia: desarrollo de nueva generación, impulsado por inteligencia artificial.</p>
+      <div class="mwords">
+        <div class="mword"><div class="mlet ml1">D</div><div class="mcon"><h4>Dev — Desarrollo</h4><p>Construimos productos digitales reales, desde apps móviles hasta sistemas complejos.</p></div></div>
+        <div class="mword"><div class="mlet ml2">N</div><div class="mcon"><h4>Nova — Nueva estrella</h4><p>Innovación constante. Como una nova, brillamos con energía y frescura en cada proyecto.</p></div></div>
+        <div class="mword"><div class="mlet ml3">AI</div><div class="mcon"><h4>AI — Inteligencia Artificial</h4><p>Integramos IA en todo lo que construimos para hacerlo más inteligente y poderoso.</p></div></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.15s">
+      <div class="mlogo">DevNova<br/>AI</div>
+      <p class="mlogosub">Desarrollo · Innovación · Inteligencia Artificial</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicios">
+  <div class="reveal"><div class="chip">✦ Servicios</div><h2 class="stitle">Todo lo que necesitas para crecer digitalmente</h2><p class="ssub">Soluciones tecnológicas modernas, hechas a medida para tu negocio.</p></div>
+  <div class="sgrid">
+    <div class="scard reveal"><span class="snum">01</span><div class="sico">📱</div><h3>Apps Móviles</h3><p>React Native para Android e iOS. Pagos, notificaciones push, mapas, chat en tiempo real y más.</p></div>
+    <div class="scard reveal"><span class="snum">02</span><div class="sico">🌐</div><h3>Páginas Web</h3><p>Landings, e-commerce y sistemas web. Diseño moderno, rápido y optimizado para buscadores.</p></div>
+    <div class="scard reveal"><span class="snum">03</span><div class="sico">🎮</div><h3>Juegos</h3><p>Juegos web y móviles con mecánicas atractivas. Three.js, Canvas. Del prototipo al lanzamiento.</p></div>
+    <div class="scard reveal"><span class="snum">04</span><div class="sico">🎬</div><h3>Videos con IA</h3><p>Contenido visual con inteligencia artificial. Demos, ads y presentaciones automáticas.</p></div>
+    <div class="scard reveal"><span class="snum">05</span><div class="sico">🤖</div><h3>Programas con IA</h3><p>Software inteligente con LLMs. Automatización, análisis de datos, chatbots y más.</p></div>
+    <div class="scard reveal"><span class="snum">06</span><div class="sico">⚙️</div><h3>Software a Medida</h3><p>APIs, dashboards y sistemas de gestión adaptados exactamente a tu empresa.</p></div>
+  </div>
+</section>
+
+<section class="exs alt" id="instituciones">
+  <div class="reveal"><div class="chip">🏛️ Sector Público</div><h2 class="stitle">Apps para instituciones y gobierno</h2><p class="ssub">Digitalizamos trámites y servicios para municipalidades, hospitales, colegios y entidades del Estado.</p></div>
+  <div class="exgrid">
+    <div class="excard reveal"><span class="exicon">📄</span><h4>Partidas y Certificados</h4><p>Partidas de nacimiento, matrimonio y defunción desde tu celular. Sin colas, sin papeleos.</p><span class="extag tb">Municipalidad</span></div>
+    <div class="excard reveal"><span class="exicon">🏥</span><h4>Citas Médicas Online</h4><p>Agenda consultas en postas y hospitales. Historial clínico, resultados y recetas.</p><span class="extag tg">Salud</span></div>
+    <div class="excard reveal"><span class="exicon">🏫</span><h4>Matrícula y Notas Escolar</h4><p>Matrícula online, notas en tiempo real, comunicados del colegio y pagos de pensión.</p><span class="extag tb">Educación</span></div>
+    <div class="excard reveal"><span class="exicon">🚔</span><h4>Denuncias Ciudadanas</h4><p>Reporta incidentes, sigue el estado de tu caso y comunícate con serenazgo en tiempo real.</p><span class="extag tr">Seguridad</span></div>
+    <div class="excard reveal"><span class="exicon">🏛️</span><h4>Trámites Municipales</h4><p>Licencias, pago de arbitrios, solicitudes de obras y quejas vecinales en un clic.</p><span class="extag tb">Municipalidad</span></div>
+    <div class="excard reveal"><span class="exicon">🎓</span><h4>Certificados Universitarios</h4><p>Constancias, diplomas y traslados con firma digital. Sin ir a la universidad.</p><span class="extag ty">Universidad</span></div>
+  </div>
+</section>
+
+<section class="exs" id="negocios">
+  <div class="reveal"><div class="chip">🏪 Negocios Privados</div><h2 class="stitle">Apps para todo tipo de negocio</h2><p class="ssub">Desde restaurantes y mercados hasta gimnasios y talleres. Digitalizamos tu negocio para que vendas más.</p></div>
+  <div class="exgrid">
+    <div class="excard reveal"><span class="exicon">🍽️</span><h4>Carta Digital y Pedidos</h4><p>Menú QR, pedidos desde la mesa, delivery propio y pagos con Yape para restaurantes.</p><span class="extag tr">Restaurante</span></div>
+    <div class="excard reveal"><span class="exicon">🛒</span><h4>Mercado y Bodega Online</h4><p>Catálogo digital, delivery por WhatsApp, control de stock y pagos integrados.</p><span class="extag tg">Comercio</span></div>
+    <div class="excard reveal"><span class="exicon">💇</span><h4>Reservas para Salones</h4><p>Agenda citas, gestiona turnos, cobra online y fideliza clientes para peluquerías y spas.</p><span class="extag ty">Belleza</span></div>
+    <div class="excard reveal"><span class="exicon">🚗</span><h4>Taller Mecánico Digital</h4><p>Citas online, presupuestos, historial del vehículo y notificaciones al cliente.</p><span class="extag tb">Automotriz</span></div>
+    <div class="excard reveal"><span class="exicon">🏋️</span><h4>Gestión de Gimnasio</h4><p>Membresías, asistencia con QR, clases grupales y rutinas personalizadas.</p><span class="extag tr">Fitness</span></div>
+    <div class="excard reveal"><span class="exicon">🌾</span><h4>Precios Agrícolas en Vivo</h4><p>Precios de mercado en tiempo real y conexión entre agricultores y compradores.</p><span class="extag tg">Agricultura</span></div>
+    <div class="excard reveal"><span class="exicon">🚚</span><h4>Logística y Delivery</h4><p>Plataforma de reparto con GPS, rutas optimizadas y reportes para tu flota.</p><span class="extag tb">Logística</span></div>
+    <div class="excard reveal"><span class="exicon">🏨</span><h4>Reservas Hotel y Hostal</h4><p>Check-in online, gestión de habitaciones, pagos anticipados y reseñas.</p><span class="extag ty">Turismo</span></div>
+    <div class="excard reveal"><span class="exicon">👨‍⚕️</span><h4>Clínica y Consultorio</h4><p>Historia clínica digital, citas online, recetas electrónicas y recordatorios automáticos.</p><span class="extag tr">Salud</span></div>
+    <div class="excard reveal"><span class="exicon">🎓</span><h4>Academia y Cursos Online</h4><p>Clases grabadas y en vivo, certificados digitales, pagos y seguimiento del alumno.</p><span class="extag tb">Educación</span></div>
+  </div>
+</section>
+
+<section class="ps section" id="proceso">
+  <div class="reveal"><div class="chip">✦ Proceso</div><h2 class="stitle">Del concepto al lanzamiento</h2><p class="ssub">Un flujo claro y transparente. Siempre sabes en qué etapa está tu proyecto.</p></div>
+  <div class="psteps">
+    <div class="pstep reveal"><div class="pnum">01</div><h4>Consulta gratuita</h4><p>Escuchamos tu idea, definimos el alcance y entregamos propuesta con costo y plazo real.</p></div>
+    <div class="pstep reveal" style="transition-delay:0.1s"><div class="pnum">02</div><h4>Diseño y arquitectura</h4><p>Wireframes, stack tecnológico y flujos de usuario antes de escribir código.</p></div>
+    <div class="pstep reveal" style="transition-delay:0.2s"><div class="pnum">03</div><h4>Desarrollo iterativo</h4><p>Sprints cortos con entregas parciales. Feedback continuo hasta el resultado final.</p></div>
+    <div class="pstep reveal" style="transition-delay:0.3s"><div class="pnum">04</div><h4>Deploy y soporte</h4><p>Publicamos en las tiendas o servidores que necesites y te acompañamos post-lanzamiento.</p></div>
+  </div>
+</section>
+
+<section class="section" id="proyectos">
+  <div class="reveal"><div class="chip">✦ Proyectos</div><h2 class="stitle">Trabajo real, resultados reales</h2><p class="ssub">Productos construidos desde cero y publicados en producción.</p></div>
+  <div class="pgrid">
+    <div class="pcard reveal"><div class="pthumb t1">🏠</div><div class="pbody"><div class="ptag">App Móvil</div><h3>ChambaPe Wasi</h3><p>Marketplace de técnicos del hogar para Perú. React Native + Supabase + pagos Culqi. 300+ distritos.</p></div></div>
+    <div class="pcard reveal" style="transition-delay:0.1s"><div class="pthumb t2">🏗️</div><div class="pbody"><div class="ptag" style="color:var(--accent)">IA + App</div><h3>PresupIA</h3><p>IA que lee planos de construcción y genera presupuestos automáticos según normas RNE peruanas.</p></div></div>
+    <div class="pcard reveal" style="transition-delay:0.2s"><div class="pthumb t3">⚔️</div><div class="pbody"><div class="ptag" style="color:var(--accent3);background:rgba(245,158,11,0.1)">Juego Web</div><h3>Imperio de Civilizaciones</h3><p>Juego de estrategia en Three.js. Gestión de recursos, ejércitos y territorios en tiempo real.</p></div></div>
+  </div>
+</section>
+
+<section class="cs" id="contacto">
+  <div class="cwrap">
+    <div class="reveal">
+      <div class="chip">✦ Contacto</div><h2 class="stitle">¿Tienes una idea? Hablemos.</h2>
+      <p class="ssub">Cuéntanos tu proyecto y te respondemos en menos de 24 horas con una propuesta concreta.</p>
+      <div class="citems">
+        <div class="ci"><span class="cico">📧</span> contacto@devnovaai.com</div>
+        <div class="ci"><span class="cico">💬</span> WhatsApp disponible</div>
+        <div class="ci"><span class="cico">🌎</span> Remoto · Perú y Latinoamérica</div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.15s">
+      <form class="cform" onsubmit="handleSubmit(event)">
+        <div class="fr">
+          <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre"/></div>
+          <div class="fg"><label>Correo</label><input type="email" placeholder="tu@email.com"/></div>
+        </div>
+        <div class="fg"><label>Tipo de proyecto</label>
+          <select><option value="">Selecciona un servicio...</option><option>App Móvil</option><option>Página Web</option><option>Juego</option><option>Video con IA</option><option>Programa con IA</option><option>Software a medida</option></select>
+        </div>
+        <div class="fg"><label>Describe tu idea</label><textarea rows="4" placeholder="¿Qué quieres construir?"></textarea></div>
+        <button type="submit" class="btn-p" id="subBtn">Enviar mensaje →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="flogo"><div class="fdot"></div>DevNova AI</a>
+  <p>© 2026 DevNova AI · Todos los derechos reservados</p>
+</footer>
+
+<!-- CHATBOT -->
+<button class="cbtn" onclick="toggleChat()" title="Nova">🤖</button>
+<div class="cbubble" id="chatBubble">
+  <div class="cheader">
+    <div class="cavatar">🤖</div>
+    <div class="cinfo"><h4>Nova — Asistente DevNova AI</h4><p>● En línea ahora</p></div>
+    <button class="cclose" onclick="toggleChat()">×</button>
+  </div>
+  <div class="cmsgs" id="chatMsgs">
+    <div class="msg bot"><div class="mavatar">🤖</div><div class="mbubble">¡Hola! Soy Nova. ¿En qué puedo ayudarte hoy? 🚀</div></div>
+  </div>
+  <div class="cinput-area">
+    <input class="cinput" id="chatIn" placeholder="Escribe tu mensaje..." onkeydown="hk(event)"/>
+    <button class="csend" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+
+// ===== SCROLL REVEAL =====
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ===== FORM =====
+function handleSubmit(e){
+  e.preventDefault();
+  const b=document.getElementById('subBtn');
+  b.textContent='✓ Mensaje enviado';b.style.background='#00C896';
+  setTimeout(()=>{b.textContent='Enviar mensaje →';b.style.background='';},3000);
+}
+
+// ===== CHATBOT =====
+let chatOpen=false;
+const API_KEY='TU_API_KEY_AQUI';
+const msgs=[];
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatBubble').classList.toggle('open',chatOpen);
+  if(chatOpen)setTimeout(()=>document.getElementById('chatIn').focus(),300);
+}
+function hk(e){if(e.key==='Enter')sendMsg();}
+function addMsg(text,isBot){
+  const c=document.getElementById('chatMsgs');
+  const d=document.createElement('div');
+  d.className='msg '+(isBot?'bot':'user');
+  d.innerHTML=isBot?`<div class="mavatar">🤖</div><div class="mbubble">${text}</div>`:`<div class="mbubble">${text}</div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function addTyping(){
+  const c=document.getElementById('chatMsgs');
+  const d=document.createElement('div');
+  d.className='msg bot mtyping';d.id='typing';
+  d.innerHTML=`<div class="mavatar">🤖</div><div class="mbubble"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function rmTyping(){const t=document.getElementById('typing');if(t)t.remove();}
+async function sendMsg(){
+  const inp=document.getElementById('chatIn');
+  const text=inp.value.trim();if(!text)return;
+  inp.value='';addMsg(text,false);msgs.push({role:'user',content:text});addTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',max_tokens:300,
+        system:`Eres Nova, asistente de DevNova AI. Respondes en español, amigable y conciso. Servicios: apps móviles, webs, juegos, videos IA, software. Proyectos: ChambaPe Wasi, PresupIA, Imperio de Civilizaciones. Para cotizar invita al formulario. Máximo 3 oraciones.`,
+        messages:msgs
+      })
+    });
+    const data=await res.json();
+    const reply=data.content[0].text;
+    msgs.push({role:'assistant',content:reply});
+    rmTyping();addMsg(reply,true);
+  }catch(e){rmTyping();addMsg('Error de conexión. Escríbenos a contacto@devnovaai.com 😊',true);}
+}
+</script>
+</body>
+</html>
